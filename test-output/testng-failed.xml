@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="org.test.Login_And_Payment_Page_Validate">
+        <methods>
+          <include name="ledgerNameOrEmployeeNameValidate"/>
+          <include name="paymentForValidation"/>
+          <include name="paymentModeType"/>
+          <include name="paymentModeValidation"/>
+          <include name="companyLedgerValidate"/>
+        </methods>
+      </class> <!-- org.test.Login_And_Payment_Page_Validate -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
