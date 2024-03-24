@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.Properties;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,6 +18,7 @@ public class Reusable_Methods {
 
 	public static WebDriver driver;
 	public static Alert alt;
+	public static JavascriptExecutor js ;
 
 	public static void launchChromeBrowser() {
 		WebDriverManager.chromedriver().setup();
@@ -77,12 +79,15 @@ public class Reusable_Methods {
 	}
 	
 	
-	public static void debugChrome(String portNumber) {
-		ChromeOptions opt = new ChromeOptions();
-		opt.setExperimentalOption("debuggerAddress", "localhost:" + portNumber);
-		driver = new ChromeDriver(opt);
+	public static void scrollDown(WebElement elementRef) {
+		 js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", elementRef);
 
 	}
+	
+	
+	
+	
 
 	public static String readProperty(String fileName, String propertyName) throws IOException {
 

@@ -52,7 +52,8 @@ public class Demo {
 			
 		}
 		
-		//Paymnets Menu List Validation
+		
+		//Payments Menu List Validation
 		
 		WebElement payments = driver.findElement(By.xpath("//div[text()='Payments']"));
 		payments.click();

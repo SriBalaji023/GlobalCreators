@@ -62,7 +62,7 @@ public class Accounts_Payment_Pom extends Reusable_Methods {
 	@FindBy(xpath = "//input[@id='txtAmount']")
 	private WebElement amount;
 
-	@FindBy(xpath = "//span[@id='employeeClosingBalance']")
+	@FindBy(xpath = "//span[@id='employeeClosingBalance' or @id='vendorClosingbalance']")
 	private WebElement pendingBalance;
 
 	@FindBy(xpath = "//input[@id='txtChequeNo']")
@@ -83,7 +83,7 @@ public class Accounts_Payment_Pom extends Reusable_Methods {
 	@FindBy(xpath = "//input[@id='txtRemarks']")
 	private WebElement remarks;
 
-	@FindBy(xpath = "//button[text()='Save']")
+	@FindBy(xpath = "//button[text()='Save' and @type='submit']")
 	private WebElement save;
 
 	@FindBy(xpath = "//button[text()='Cancel']")

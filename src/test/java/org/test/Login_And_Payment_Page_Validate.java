@@ -16,26 +16,21 @@ import reusableComponents.Reusable_Methods;
 public class Login_And_Payment_Page_Validate extends Reusable_Methods {
 
 	@Test(priority = 1)
-	public void browserSetup() throws IOException {
+	public void browserSetupAndLogin() throws IOException {
 		launchChromeBrowser();
 		maximizeWindow();
-		implicitWait(15);
+		implicitWait(10);
 		launchUrl(readProperty("Login Credentials", "URL"));
-
-	}
-
-	@Test(priority = 2, dependsOnMethods = "browserSetup")
-	public void login() throws IOException {
-
 		Login_Page_Pom login = new Login_Page_Pom();
-
 		passValue(login.getUserName(), readProperty("Login Credentials", "UserName"));
 		passValue(login.getPassword(), readProperty("Login Credentials", "Password"));
 		clickButton(login.getLoginButton());
 
 	}
 
-	@Test(priority = 3, dependsOnMethods = "login")
+	
+
+	@Test(priority = 2 , enabled=true)
 	public void navigateToAccountsPaymentsPage() {
 		Accounts_Payment_Pom account = new Accounts_Payment_Pom();
 
@@ -77,7 +72,7 @@ public class Login_And_Payment_Page_Validate extends Reusable_Methods {
 
 	}
 
-	@Test(priority = 4, dependsOnMethods = "navigateToAccountsPaymentsPage")
+	@Test(priority = 3, enabled=true)
 
 	public void paymentNumberAndPaymentDateValidation() {
 
@@ -104,7 +99,7 @@ public class Login_And_Payment_Page_Validate extends Reusable_Methods {
 
 	}
 
-	@Test(priority = 5, enabled = true)
+	@Test(priority = 4, enabled = true)
 	public void paymentForValidation() {
 		Accounts_Payment_Pom payment = new Accounts_Payment_Pom();
 		clickButton(payment.getPaymentFor());
@@ -144,7 +139,7 @@ public class Login_And_Payment_Page_Validate extends Reusable_Methods {
 
 	}
 
-	@Test(priority = 6, enabled = true)
+	@Test(priority = 5, enabled = true)
 	public void paymentModeValidation() {
 		Accounts_Payment_Pom payment = new Accounts_Payment_Pom();
 		clickButton(payment.getPaymentMode());
@@ -176,7 +171,7 @@ public class Login_And_Payment_Page_Validate extends Reusable_Methods {
 
 		}
 
-		if (!fetchBackText(payment.getPaymentFor()).equalsIgnoreCase(PaymentModeToBeSelect)) {
+		if (!fetchBackText(payment.getPaymentMode()).equalsIgnoreCase(PaymentModeToBeSelect)) {
 			System.out.println(
 					"Payment Mode is Invalid.Payment Mode must be one of the followings - 'CASH', 'CHEQUE', 'DD', 'NEFT', 'UPI', 'RTGS', 'CARD'\nGiven Parameter Value : "
 							+ PaymentModeToBeSelect + "\n");
@@ -184,7 +179,7 @@ public class Login_And_Payment_Page_Validate extends Reusable_Methods {
 
 	}
 
-	@Test(priority = 7, enabled = true)
+	@Test(priority = 6, enabled = true)
 	public void paymentModeType() {
 
 		Accounts_Payment_Pom payment = new Accounts_Payment_Pom();
@@ -230,7 +225,7 @@ public class Login_And_Payment_Page_Validate extends Reusable_Methods {
 
 	}
 
-	@Test(priority = 8, enabled = true)
+	@Test(priority = 7, enabled = true)
 	public void ledgerNameOrEmployeeNameValidate() {
 
 		Accounts_Payment_Pom payment = new Accounts_Payment_Pom();
@@ -310,7 +305,7 @@ public class Login_And_Payment_Page_Validate extends Reusable_Methods {
 		}
 	}
 
-	@Test(priority = 9, enabled = true)
+	@Test(priority = 8, enabled = true)
 	public void companyLedgerValidate() {
 
 		Accounts_Payment_Pom payment = new Accounts_Payment_Pom();
@@ -357,6 +352,8 @@ public class Login_And_Payment_Page_Validate extends Reusable_Methods {
 		Accounts_Payment_Pom payment = new Accounts_Payment_Pom();
 
 		String pendingBalance = fetchBackText(payment.getPendingBalance());
+		
+		System.out.println(pendingBalance);
 
 		if (pendingBalance.isEmpty()) {
 			System.err.println("Employee / Ledger is Not Valid");
@@ -364,7 +361,7 @@ public class Login_And_Payment_Page_Validate extends Reusable_Methods {
 		} else {
 			double pending = Double.parseDouble(pendingBalance);
 
-			double amount = 75.20;
+			double amount = 50.00;
 
 			if (amount > pending) {
 				System.err.println("Input Amount is Greater than Pending Balance. So Amount Field as Empty\n"
@@ -378,6 +375,8 @@ public class Login_And_Payment_Page_Validate extends Reusable_Methods {
 		}
 
 		passValue(payment.getRemarks(), "No Remarks");
+		
+		
 	}
 
 }
